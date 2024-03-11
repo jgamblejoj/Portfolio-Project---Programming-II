@@ -10,15 +10,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GUI extends JFrame {
+	// Attributes
     private JTextField nameField, addressField, gpaField;
     private JTextArea displayArea;
     private LinkedList<Student> studentList;
-
+    
     public GUI() {
         super("Student Directory System");
         studentList = new LinkedList<>();
 
-        // Set up the form
+        // Set up the form; Name, Address, and GPA
         setLayout(new FlowLayout());
 
         add(new JLabel("Name:"));
@@ -32,12 +33,14 @@ public class GUI extends JFrame {
         add(new JLabel("GPA:"));
         gpaField = new JTextField(5);
         add(gpaField);
-
+        
+        // Buttons for GUI; Add Student and Save File
         JButton addButton = new JButton("Add Student");
         JButton saveButton = new JButton("Save to .txt file");
         add(addButton);
         add(saveButton);
-
+        
+        // Text Area
         displayArea = new JTextArea(10, 50);
         displayArea.setEditable(false); // Make the text area non-editable
         add(new JScrollPane(displayArea)); // Add scroll pane around the text area
@@ -53,6 +56,7 @@ public class GUI extends JFrame {
         setVisible(true);
     }
 
+    // Method for adding Student objects
     private void addStudent() {
         String name = nameField.getText().trim();
         String address = addressField.getText().trim();
@@ -79,7 +83,8 @@ public class GUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Invalid GPA. Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
+    // Display Student objects in Text Area
     private void displayStudents() {
         StringBuilder builder = new StringBuilder();
         for (Student s : studentList) {
@@ -87,7 +92,8 @@ public class GUI extends JFrame {
         }
         displayArea.setText(builder.toString());
     }
-
+    
+    // Output contents of the LinkedList to a .txt file on the user's Desktop
     private void saveStudentsToFile() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Specify a file to save");

@@ -16,6 +16,7 @@ public class Student {
 	public String toString() {
 	    return name + "-- GPA: " + String.format("%.2f", GPA) + ", " + address + "\n";
 	}	
+	// Getter for Student name
 	public String getName() {
 		return name;
 	}
